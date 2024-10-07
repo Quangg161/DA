@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách sản phẩm</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1>Danh sách sản phẩm</h1>
+        <div class="cart-link">
+          <a href="/cart">🛒 Giỏ hàng</a>
+        </div>
+      </header>
+
+      <div class="product-grid">
+        <% products.forEach((product) => { %>
+        <div class="product-card">
+          <img
+            src="<%= product.imageUrl %>"
+            alt="<%= product.name %>"
+            class="product-image"
+          />
+          <h2><%= product.name %></h2>
+          <p class="product-description"><%= product.description %></p>
+          <p class="product-price">Giá: <%= product.price %> VND</p>
+          <a href="/products/<%= product._id %>" class="details-btn"
+            >Xem chi tiết</a
+          >
+          <form action="/cart" method="post" onsubmit="showNotification(event)">
+            <input type="hidden" name="productId" value="<%= product._id %>" />
+            <button type="submit" class="add-to-cart-btn">
+              Thêm vào giỏ hàng
+            </button>
+          </form>
+        </div>
+        <% }) %>
+      </div>
+
+      <div id="notification" class="notification">
+        Sản phẩm đã được thêm vào giỏ hàng thành công!
+      </div>
+    </div>
+    <footer class="site-footer">
+      <p>© 2024 HK Store. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      function showNotification(event) {
+        event.preventDefault();
+
+        const notification = document.getElementById("notification");
+        notification.style.display = "block";
+
+        setTimeout(() => {
+          notification.style.display = "none";
+        }, 3000);
+
+        setTimeout(() => {
+          event.target.submit();
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>

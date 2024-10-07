@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1>Giỏ hàng của bạn</h1>
+        <div class="cart-link">
+          <a href="/products" class="continue-shopping-btn">Tiếp tục mua sắm</a>
+        </div>
+      </header>
+
+      <div class="cart-list">
+        <% if (products.length > 0) { %>
+        <ul class="cart-items">
+          <% products.forEach((product) => { %>
+          <li class="cart-item">
+            <h2><%= product.name %></h2>
+            <p>Giá: <%= product.price %> VND</p>
+          </li>
+          <% }) %>
+        </ul>
+        <p class="total-price">
+          Tổng giá: <%= products.reduce((total, product) => total +
+          product.price, 0) %> VND
+        </p>
+        <% } else { %>
+        <p class="empty-cart">Giỏ hàng của bạn trống.</p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
