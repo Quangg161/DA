@@ -1,1 +1,1 @@
-<title>Website Shopping</title>
+Website Shopping
